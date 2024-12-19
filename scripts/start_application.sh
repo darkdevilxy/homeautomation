@@ -1,27 +1,27 @@
 #!/bin/bash
-
 cd /var/www/html
 
-# Set verbose output for npm install
-npm install --verbose
+# Kill any existing node process
+pkill node || true
 
-if [ $? -ne 0 ]; then
-  echo "npm install failed. Check the logs for more details."
-  exit 1
+# Install dependencies
+npm install
+
+# Start application in background and redirect output to log file
+node index.js > /var/www/html/app.log 2>&1 &
+
+# Save the process ID
+echo $! > /var/www/html/app.pid
+
+# Wait a few seconds to verify app started
+sleep 5
+
+# Check if process is running
+if ps -p $(cat /var/www/html/app.pid) > /dev/null; then
+    echo "Application started successfully"
+    exit 0
+else
+    echo "Failed to start application"
+    cat /var/www/html/app.log
+    exit 1
 fi
-
-npm start
-
-if [ $? -ne 0 ]; then
-  echo "npm start failed. Check the logs for more details."
-  exit 1
-fi
-
-sudo systemctl restart nginx
-
-if [ $? -ne 0 ]; then
-  echo "Nginx restart failed. Check the system logs for more details."
-  exit 1
-fi
-
-echo "Deployment successful!"
