@@ -1,0 +1,253 @@
+/* Add styles here */
+body{
+    height: 100%;
+    overflow-y: hidden;
+  }
+  /* Navbar Styles */
+  nav {
+    display: grid;
+    width: 100%;
+    /* border: 1px solid blue; */
+    grid-template-columns: 4fr 1fr;
+    gap: 15rem;
+    background-color: blanchedalmond;
+    padding: 0px;
+  }
+
+  ul {
+    display: flex;
+    justify-content: left;
+    /* border: 1px solid green; */
+    padding: 0px;
+    margin: 0px;
+  }
+
+  li {
+    list-style-type: none;
+    text-align: center;
+    padding: 1rem;
+    margin: 0px;
+    /* border: 1px solid red; */
+  }
+
+  li:hover {
+    background-color: beige;
+  }
+
+  .profile {
+    display: flex;
+    justify-content: right;
+  }
+
+
+/* Banner Styles */
+.banner {
+  position: relative;
+  width: 100%;
+  height: 20rem; /* Adjust height as needed */
+  overflow: hidden;
+}
+
+.banner_image {
+  width: 100%;
+  max-height: 20rem;
+  object-fit: cover;
+}
+
+.banner_text {
+  position: absolute;
+  left: 50%;
+  top: 70%; /* Positioned slightly lower than center */
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 10;
+  
+  /* Artistic text styling */
+  font-family: 'Arial', sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  
+  /* Optional background for readability */
+  padding: 20px 40px;
+  border-radius: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .banner_text {
+      font-size: 1.5rem;
+      padding: 15px 30px;
+  }
+}
+
+/* Cards Container Styles */
+.cards_container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
+  padding: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Individual Card Styles */
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card_image {
+  width: 100%;
+  height: 150px;  /* Reduced image height */
+  object-fit: cover;
+  background-color: #f0f0f0;
+}
+
+.card_title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 15px;
+  background-color: #f9f9f9;
+}
+
+.card_discription {
+  padding: 15px;
+  color: #666;
+  flex-grow: 1;
+  line-height: 1.6;  /* Improved readability */
+  font-size: 0.9rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .cards_container {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .cards_container {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(6, 1fr);
+      gap: 15px;
+      padding: 1rem;
+  }
+
+  .card_image {
+      height: 200px;
+  }
+}
+
+/* Overlay Styles */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+
+  .overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .overlay-content {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+  }
+
+  .overlay-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: #666;
+    cursor: pointer;
+  }
+
+  .overlay-image {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+
+  .overlay-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .overlay-description {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+
+  .overlay-controls {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .overlay-controls button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+
+  /* Login form styles */
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .login-form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  .login-form button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
