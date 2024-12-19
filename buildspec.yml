@@ -24,4 +24,4 @@ artifacts:
     - node_modules/**/*
     - scripts/**/*
     - appspec.yml
-    - public/*
+    - public/**/*
