@@ -1,100 +1,118 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Automation</title>
+    <link href="staticfiles/style.css" rel="stylesheet" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home Automation</title>
-  <link href='staticfiles/style.css' rel='stylesheet'>
-</head>
+  <body>
+    <!-- Top navigation bar -->
 
-<body>
+    <nav>
+      <ul>
+        <li xmlns="http://www.w3.org/2000/svg" class="list">Items</li>
+        <li>Home</li>
+        <li>About</li>
+      </ul>
+      <ul class="profile">
+        <li onclick="showLoginOptions()">Profile</li>
+        <div class="dropdown_container">
+          <ul class="dropdown">
+            <li class="login-button">Log In</li>
+            <li>Sign Up</li>
+          </ul>
+        </div>
+      </ul>
+    </nav>
+    <!-- Image Banner -->
 
-  <!-- Top navigation bar -->
-
-  <nav>
-    <ul>
-      <li class="list">Items</li>
-      <li>Home</li>
-      <li>About</li>
-    </ul>
-    <ul class="profile">
-      <li class="login-button">Profile</li>
-    </ul>
-  </nav>
-  <!-- Image Banner -->
-
-  <div class="banner">
-      <img class="banner_image" src="Images/home_automation.jpg" alt="Home Automation">
-    <div class="banner_text">
-      Home Automation With Raspberry Pi
+    <div class="banner">
+      <img
+        class="banner_image"
+        src="Images/home_automation.jpg"
+        alt="Home Automation"
+      />
+      <div class="banner_text">Home Automation With Raspberry Pi</div>
     </div>
-  </div>
 
-<!-- Cards for individual components -->
-<div class="cards_container">
-  <div class="card">
-    <img src="Images/lightbulb.jpg" alt="" class="card_image">
-    <div class="card_title">Light Bulb</div>
-    <div class="card_discription">
-      <p>Control the lightings</p>
+    <!-- Cards for individual components -->
+    <div class="cards_container">
+      <div class="card">
+        <img src="Images/lightbulb.jpg" alt="" class="card_image" />
+        <div class="card_title">Light Bulb</div>
+        <div class="card_discription">
+          <p>Control the lightings</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="Images/aircon.png" alt="" class="card_image" />
+        <div class="card_title">Air Conditioner</div>
+        <div class="card_discription">Adjust the temperature</div>
+      </div>
+      <div class="card">
+        <img src="Images/camera.webp" alt="" class="card_image" />
+        <div class="card_title">DoorBell Camera</div>
+        <div class="card_discription">Check if there's anyone at the door.</div>
+      </div>
+      <div class="card">
+        <img src="Images/console.png" alt="" class="card_image" />
+        <div class="card_title">Gaming Console</div>
+        <div class="card_discription">Remote Play on Home console</div>
+      </div>
+      <div class="card">
+        <img src="Images/washer.png" alt="" class="card_image" />
+        <div class="card_title">Washing Machine</div>
+        <div class="card_discription">Schedule Washine and Drying</div>
+      </div>
+      <div class="card">
+        <img src="Images/air-purifier.png" alt="" class="card_image" />
+        <div class="card_title">Air Purifier</div>
+        <div class="card_discription">Schedule active time</div>
+      </div>
     </div>
-  </div>
-  <div class="card">
-    <img src="Images/aircon.jpeg" alt="" class="card_image">
-    <div class="card_title">Air Conditioner</div>
-    <div class="card_discription">Adjust the temperature</div>
-  </div>
-  <div class="card">
-    <img src="Images/camera.jpg" alt="" class="card_image">
-    <div class="card_title">DoorBell Camera</div>
-    <div class="card_discription">Check if there's anyone at the door.</div>
-  </div>
-  <div class="card">
-    <img src="Images/console.jpg" alt="" class="card_image">
-    <div class="card_title">Gaming Console</div>
-    <div class="card_discription">Remote Play on Home console</div>
-  </div>
-  <div class="card">
-    <img src="Images/washer.jpg" alt="" class="card_image">
-    <div class="card_title">Washing Machine</div>
-    <div class="card_discription">Schedule Washine and Drying</div>
-  </div>
-  <div class="card">
-    <img src="Images/philips-4200-white.avif" alt="" class="card_image">
-    <div class="card_title">Air Purifier</div>
-    <div class="card_discription">Schedule active time</div>
-  </div>
-</div>
 
-<!-- Overlay Design -->
-<div class="overlay">
-  <div class="overlay-content">
-    <span class="overlay-close">&times;</span>
-    <img src="" alt="" class="overlay-image">
-    <div class="overlay-title"></div>
-    <div class="overlay-description"></div>
-    <div class="overlay-controls">
-      <button class="overlay-action1">Action 1</button>
-      <button class="overlay-action2">Action 2</button>
+    <!-- Overlay Design -->
+    <div class="overlay">
+      <div class="overlay-content">
+        <span class="overlay-close">&times;</span>
+        <img src="" alt="" class="overlay-image" />
+        <div class="overlay-title"></div>
+        <div class="overlay-description"></div>
+        <div class="overlay-controls">
+          <button class="overlay-action1">Action 1</button>
+          <button class="overlay-action2">Action 2</button>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
-<!-- Login form overlay design -->
-<div class="login-overlay">
-  <div class="login-overlay-content">
-    <span class="login-overlay-close">&times;</span>
-    <h2>Log In</h2>
-    <form class="login-form">
-      <input type="text" placeholder="Username" />
-      <input type="password" placeholder="Password" />
-      <button type="submit">Log In</button>
-    </form>
-  </div>
-</div>
-</body>
-<script src="/staticfiles/main.js">  </script>
-<script src="index.js"></script>
+    <!-- Login form overlay design -->
+    <div class="login-overlay">
+      <div class="login-overlay-content">
+        <span class="login-overlay-close">&times;</span>
+        <h2>Log In</h2>
+        <form class="login-form">
+          <input type="text" placeholder="Username" />
+          <input type="password" placeholder="Password" />
+          <button type="submit">Log In</button>
+        </form>
+      </div>
+    </div>
 
+
+<!-- view video overlay design -->
+    <div class="video-overlay">
+      <div class="video-overlay-content">
+        <span class="video-overlay-close">&times;</span>
+        <h2>Video</h2>
+        <video controls class="video-player">
+          <source src="" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+
+  </body>
+  <script src="/staticfiles/main.js"></script>
+  <script src="index.js"></script>
 </html>
