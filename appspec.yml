@@ -13,11 +13,11 @@ hooks:
     - location: scripts/start_application.sh
       timeout: 300
       runas: root
-Resources:
-  - TargetService:
-      Type: AWS::ECS::Service
-      Properties:
-        TaskDefinition: <TASK_DEFINITION>
-        LoadBalancerInfo:
-          ContainerName: "NodeApp"
-          ContainerPort: 8080
+# Resources:
+#   - TargetService:
+#       Type: AWS::ECS::Service
+#       Properties:
+#         TaskDefinition: <TASK_DEFINITION>
+#         LoadBalancerInfo:
+#           ContainerName: "NodeApp"
+#           ContainerPort: 8080

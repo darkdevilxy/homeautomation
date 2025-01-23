@@ -1,19 +1,22 @@
 {
-    "name": "your-app-name",
-    "version": "1.0.0",
-    "description": "Your application description",
-    "main": "index.js",
-    "scripts": {
-        "start": "node index.js",
-        "build": "echo 'Build process completed'",
-        "test": "echo 'Tests completed'"
-    },
-    "devDependencies": {
-        "nodemon": "^2.0.15"
-    },
-    "dependencies": {
-        "express": "^4.21.2",
-        "vite": "^6.0.6",
-        "ws": "^8.18.0"
-    }
+  "name": "your-app-name",
+  "version": "1.0.0",
+  "description": "Your application description",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "build": "echo 'Build process completed'",
+    "test": "echo 'Tests completed'"
+  },
+  "engines": {
+    "node": "22.x"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "vite": "^6.0.6",
+    "ws": "^8.18.0"
+  }
 }
