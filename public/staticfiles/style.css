@@ -28,7 +28,7 @@ body{
     /* border: 1px solid blue; */
     grid-template-columns: 4fr 1fr;
     gap: 15rem;
-    background-color: var(--success-color);
+    background-color: var(--primary-color);
     padding: 0px;
   }
 
