@@ -1,7 +1,7 @@
 FROM node:18-alpine
 
 # Set the working directory inside the container
-WORKDIR /public
+WORKDIR /app
 
 # Copy package.json and install dependencies
 COPY package*.json ./
@@ -14,4 +14,4 @@ COPY . .
 EXPOSE 8080
 
 # Run the application
-CMD ["node", "index.js"]
+CMD ["node", "server.js"]
