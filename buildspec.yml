@@ -1,27 +1,42 @@
-# buildspec.yml - CodeBuild configuration
 version: 0.2
+
 phases:
-  install:
-    runtime-versions:
-      nodejs: 16
   pre_build:
     commands:
-      - echo Installing dependencies...
-      - npm install
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 565409713405.dkr.ecr.ap-southeast-2.amazonaws.com
+      - REPO_URI=565409713405.dkr.ecr.ap-southeast-2.amazonaws.com/homeautomation/
+      - IMAGE_TAG=$(date +%Y%m%d%H%M%S)
+
   build:
     commands:
-      - echo Building...
-      - npm run build
+      - echo Building Docker image...
+      - docker build -t $REPO_URI:$IMAGE_TAG .
+      - docker tag $REPO_URI:$IMAGE_TAG $REPO_URI:latest
+      - echo Pushing Docker images to ECR...
+      - docker push $REPO_URI:$IMAGE_TAG
+      - docker push $REPO_URI:latest
+
   post_build:
     commands:
-      - echo Build completed
-      - npm test
+      - echo Writing Dockerrun.aws.json...
+      - |
+        echo '{
+          "AWSEBDockerrunVersion": "1",
+          "Image": {
+            "Name": "'$REPO_URI:$IMAGE_TAG'",
+            "Update": "true"
+          },
+          "Ports": [
+            {
+              "ContainerPort": "3000"
+            }
+          ]
+        }' > Dockerrun.aws.json
+      - echo Uploading Dockerrun.aws.json to S3...
+      - aws s3 cp Dockerrun.aws.json s3://codepipeline-ap-southeast-2-18115822795/Dockerrun.aws.json
+      - echo Initiating deployment process...
+
 artifacts:
   files:
-    - package.json
-    - package-lock.json
-    - index.js
-    - node_modules/**/*
-    - scripts/**/*
-    - appspec.yml
-    - public/**/*
+    - Dockerrun.aws.json
