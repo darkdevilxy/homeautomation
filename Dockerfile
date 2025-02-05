@@ -1,7 +1,7 @@
 FROM public.ecr.aws/docker/library/node:18-alpine
  
 
-WORKDIR /app  
+WORKDIR /public  
 COPY package.json package-lock.json ./  
 RUN npm install --only=production  
 
