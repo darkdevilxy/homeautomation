@@ -34,7 +34,7 @@ phases:
           ]
         }' > Dockerrun.aws.json
       - echo Uploading Dockerrun.aws.json to S3...
-      - aws s3 cp Dockerrun.aws.json s3://codepipeline-ap-southeast-2-18115822795/Dockerrun.aws.json
+      - aws s3 cp Dockerrun.aws.json s3://dockerpolicy/Dockerrun.aws.json
       - echo Initiating deployment process...
 
 artifacts:
