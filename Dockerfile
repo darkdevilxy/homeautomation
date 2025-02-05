@@ -1,11 +1,17 @@
-FROM public.ecr.aws/docker/library/node:18-alpine
- 
+FROM node:18-alpine
 
-WORKDIR /public  
-COPY package.json package-lock.json ./  
-RUN npm install --only=production  
+# Set the working directory inside the container
+WORKDIR /app
 
-COPY . .  
+# Copy package.json and install dependencies
+COPY package*.json ./
+RUN npm install
 
-CMD ["node", "server.js"]  
-EXPOSE 3000  
+# Copy the rest of your application
+COPY . .
+
+# Expose the port your app will run on
+EXPOSE 8080
+
+# Run the application
+CMD ["node", "index.js"]
