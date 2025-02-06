@@ -36,8 +36,9 @@ phases:
       - echo Uploading Dockerrun.aws.json to S3...
       - aws s3 cp Dockerrun.aws.json s3://dockerpolicy/Dockerrun.aws.json
       - |
+        PAYLOAD=$(echo "{\"version_label\": \"$IMAGE_TAG\"}" | jq -c .)
         aws lambda invoke --function-name BlueGreenSwapper \
-          --payload "{\"version_label\": \"$IMAGE_TAG\"}" \
+          --payload "$PAYLOAD" \
           response.json
       # - |
       #   echo "{
