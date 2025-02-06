@@ -37,7 +37,7 @@ phases:
       - aws s3 cp Dockerrun.aws.json s3://dockerpolicy/Dockerrun.aws.json
       - |
         PAYLOAD=$(echo "{\"version_label\": \"$IMAGE_TAG\"}" | base64)
-        aws lambda invoke --function-name BlueGreenSwapper \
+        aws lambda invoke --function-name BlueGreenSwap \
           --payload "$PAYLOAD" \
           response.json
       # - |
