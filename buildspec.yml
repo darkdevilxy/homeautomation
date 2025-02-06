@@ -37,7 +37,7 @@ phases:
       - aws s3 cp Dockerrun.aws.json s3://dockerpolicy/Dockerrun.aws.json
       - |
         echo "{
-        "version_label": "'$IMAGE_TAG'"
+        "version_label": "$IMAGE_TAG"
         }" > version.json
       - aws s3 cp version.json s3://dockerpolicy/version.json
       - echo Initiating deployment process...
