@@ -35,6 +35,7 @@ phases:
         }' > Dockerrun.aws.json
       - echo Uploading Dockerrun.aws.json to S3...
       - aws s3 cp Dockerrun.aws.json s3://dockerpolicy/Dockerrun.aws.json
+      - aws lambda invoke --function-name BlueGreenSwapper --payload "{\"version_label\": \"$IMAGE_TAG\"}" response.json
       - echo Initiating deployment process...
 
 artifacts:
