@@ -1,5 +1,6 @@
 import cv2
 import time
+import light_control
 
 def main():
     # Initialize webcam
@@ -38,11 +39,10 @@ def main():
 
         # Simulate light response
         if motion_detected and not light_on:
-            light_on = True
-            print("Light ON")
+            light_control.light_control('On')
         elif not motion_detected and light_on:
             light_on = False
-            print("Light OFF")
+            turn_off_light()
 
         # Show the video feed
         cv2.imshow("Live Video Feed", frame2)
@@ -59,6 +59,14 @@ def main():
     # Release resources
     cap.release()python_scripts/human_detection.py
     cv2.destroyAllWindows()
+
+def turn_on_light():
+    # Placeholder for light control logic
+    print("Light ON")
+
+def turn_off_light():
+    # Placeholder for light control logic
+    print("Light OFF")
 
 if __name__ == "__main__":
     main()

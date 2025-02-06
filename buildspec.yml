@@ -43,7 +43,7 @@ phases:
           --region ap-southeast-2
       -  |
         aws lambda update-function-configuration \
-          --function-name BlueGreenSwapper \
+          --function-name BlueGreenSwap \
           --environment "Variables={version_label=$IMAGE_TAG}"
       - echo Triggering Lambda function for Blue-Green Deployment...
       - |
