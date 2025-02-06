@@ -35,8 +35,10 @@ phases:
         }' > Dockerrun.aws.json
       - echo Uploading Dockerrun.aws.json to S3...
       - aws s3 cp Dockerrun.aws.json s3://dockerpolicy/Dockerrun.aws.json
-      - export CODEBUILD_ENV_FILE=/tmp/codebuild.env
-      - echo "VERSION_LABEL=$IMAGE_TAG" >> $CODEBUILD_ENV_FILE
+      - |
+        aws lambda invoke --function-name BlueGreenSwapper \
+          --payload "{\"version_label\": \"$IMAGE_TAG\"}" \
+          response.json
       # - |
       #   echo "{
       #   "version_label": "$IMAGE_TAG"
