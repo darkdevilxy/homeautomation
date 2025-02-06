@@ -36,6 +36,12 @@ phases:
       - echo Uploading Dockerrun.aws.json to S3...
       - aws s3 cp Dockerrun.aws.json s3://dockerpolicy/Dockerrun.aws.json
       - |
+        aws elasticbeanstalk create-application-version \
+          --application-name homeautomation \
+          --version-label "$IMAGE_TAG" \
+          --source-bundle S3Bucket=dockerpolicy,S3Key=Dockerrun.aws.json \
+          --region ap-southeast-2
+      - |
         PAYLOAD=$(echo "{\"version_label\": \"$IMAGE_TAG\"}" | base64)
         aws lambda invoke --function-name BlueGreenSwap \
           --payload "$PAYLOAD" \
@@ -50,4 +56,3 @@ phases:
 artifacts:
   files:
     - Dockerrun.aws.json
-  name: build-artifact
