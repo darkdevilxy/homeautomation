@@ -41,6 +41,11 @@ phases:
           --version-label "$IMAGE_TAG" \
           --source-bundle S3Bucket=dockerpolicy,S3Key=Dockerrun.aws.json \
           --region ap-southeast-2
+      -  |
+        aws lambda update-function-configuration \
+          --function-name BlueGreenSwapper \
+          --environment "Variables={version_label=$IMAGE_TAG}"
+      - echo Triggering Lambda function for Blue-Green Deployment...
       - |
         PAYLOAD=$(echo "{\"version_label\": \"$IMAGE_TAG\"}" | base64)
         aws lambda invoke --function-name BlueGreenSwap \
