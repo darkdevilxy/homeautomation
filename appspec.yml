@@ -1,23 +1,8 @@
 version: 0.0
-Resources:
-  - myLambdaFunction:
-      Type: AWS::Lambda::Function
-      Properties:
-        Name: "BlueGreenSwap"
-Hooks:
-  BeforeAllowTraffic:
-    - location: "CodeDeployHook_BeforeAllowTraffic"
-      timeout: 900
-      runas: root
-      environment:
-        variables:
-          DEPLOYMENT_ID: !Ref DEPLOYMENT_ID
-          LIFECYCLE_EVENT_HOOK_ID: !Ref LIFECYCLE_EVENT_HOOK_EXECUTION_ID
+os: linux
+
+hooks:
   AfterAllowTraffic:
-    - location: "CodeDeployHook_AfterAllowTraffic"
-      timeout: 900
+    - location: arn:aws:lambda:ap-southeast-2:565409713405:function:BlueGreenSwap
+      timeout: 300
       runas: root
-      environment:
-        variables:
-          DEPLOYMENT_ID: !Ref DEPLOYMENT_ID
-          LIFECYCLE_EVENT_HOOK_ID: !Ref LIFECYCLE_EVENT_HOOK_EXECUTION_ID
