@@ -1,7 +1,23 @@
 version: 0.0
-os: linux
-
-hooks:
-  AfterInstall:
-    - location: scripts/trigger_lambda.sh
-      timeout: 300
+Resources:
+  - myLambdaFunction:
+      Type: AWS::Lambda::Function
+      Properties:
+        Name: "BlueGreenSwap"
+Hooks:
+  BeforeAllowTraffic:
+    - location: "CodeDeployHook_BeforeAllowTraffic"
+      timeout: 900
+      runas: root
+      environment:
+        variables:
+          DEPLOYMENT_ID: !DEPLOYMENT_ID
+          LIFECYCLE_EVENT_HOOK_ID: !LIFECYCLE_EVENT_HOOK_EXECUTION_ID
+  AfterAllowTraffic:
+    - location: "CodeDeployHook_AfterAllowTraffic"
+      timeout: 900
+      runas: root
+      environment:
+        variables:
+          DEPLOYMENT_ID: !DEPLOYMENT_ID
+          LIFECYCLE_EVENT_HOOK_ID: !LIFECYCLE_EVENT_HOOK_EXECUTION_ID
