@@ -1,0 +1,7 @@
+version: 0.0
+os: linux
+
+hooks:
+  AfterInstall:
+    - location: scripts/trigger_lambda.sh
+      timeout: 300
