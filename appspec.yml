@@ -11,13 +11,13 @@ Hooks:
       runas: root
       environment:
         variables:
-          DEPLOYMENT_ID: !DEPLOYMENT_ID
-          LIFECYCLE_EVENT_HOOK_ID: !LIFECYCLE_EVENT_HOOK_EXECUTION_ID
+          DEPLOYMENT_ID: !Ref DEPLOYMENT_ID
+          LIFECYCLE_EVENT_HOOK_ID: !Ref LIFECYCLE_EVENT_HOOK_EXECUTION_ID
   AfterAllowTraffic:
     - location: "CodeDeployHook_AfterAllowTraffic"
       timeout: 900
       runas: root
       environment:
         variables:
-          DEPLOYMENT_ID: !DEPLOYMENT_ID
-          LIFECYCLE_EVENT_HOOK_ID: !LIFECYCLE_EVENT_HOOK_EXECUTION_ID
+          DEPLOYMENT_ID: !Ref DEPLOYMENT_ID
+          LIFECYCLE_EVENT_HOOK_ID: !Ref LIFECYCLE_EVENT_HOOK_EXECUTION_ID
