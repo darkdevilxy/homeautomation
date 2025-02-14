@@ -1,4 +1,5 @@
 import requests
+import time
 
 # Parameters
 server_uri = 'shelly-129-eu.shelly.cloud'
@@ -15,11 +16,8 @@ def light_control(turn):
             'auth_key': auth_key
         }
     )
+    
 
     # Print response
     print(response.text)
     print(response.status_code)
-
-# Print response
-print(response.text)
-print(response.status_code)

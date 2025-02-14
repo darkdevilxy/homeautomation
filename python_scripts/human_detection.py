@@ -1,7 +1,11 @@
 import cv2
 import time
 import light_control
+import threading
+import requests
 
+light_on = False
+timer = None
 def main():
     # Initialize webcam
     cap = cv2.VideoCapture(0)
@@ -38,11 +42,11 @@ def main():
                 break
 
         # Simulate light response
-        if motion_detected and not light_on:
-            light_control.light_control('On')
+        if motion_detected:
+            light_on = True
+            turn_on_light()
         elif not motion_detected and light_on:
             light_on = False
-            turn_off_light()
 
         # Show the video feed
         cv2.imshow("Live Video Feed", frame2)
@@ -57,16 +61,35 @@ def main():
             break
 
     # Release resources
-    cap.release()python_scripts/human_detection.py
+    cap.release()
     cv2.destroyAllWindows()
 
 def turn_on_light():
-    # Placeholder for light control logic
-    print("Light ON")
+    global timer
+    if not light_on:
+        url = "https://911b-203-87-126-194.ngrok-free.app/turn-on"
+        headers = {"Content-Type": "application/json"}
 
+        response = requests.post(url, headers=headers)
+
+        if response.status_code == 200:
+            print("Light turned on:", response.json())
+        else:
+            print("Error turning on light:", response.status_code)
+        if timer:
+            timer.cancel()
+        timer = threading.Timer(30, turn_off_light).start()
+        
 def turn_off_light():
-    # Placeholder for light control logic
-    print("Light OFF")
+    url = "https://911b-203-87-126-194.ngrok-free.app/turn-off"
+    headers = {"Content-Type": "application/json"}
+
+    response = requests.post(url, headers=headers)
+
+    if response.status_code == 200:
+        print("Light turned on:", response.json())
+    else:
+        print("Error turning on light:", response.status_code)
 
 if __name__ == "__main__":
     main()
