@@ -67,29 +67,13 @@ def main():
 def turn_on_light():
     global timer
     if not light_on:
-        url = "https://911b-203-87-126-194.ngrok-free.app/turn-on"
-        headers = {"Content-Type": "application/json"}
-
-        response = requests.post(url, headers=headers)
-
-        if response.status_code == 200:
-            print("Light turned on:", response.json())
-        else:
-            print("Error turning on light:", response.status_code)
+        light_control.light_control("on")
         if timer:
             timer.cancel()
         timer = threading.Timer(30, turn_off_light).start()
         
 def turn_off_light():
-    url = "https://911b-203-87-126-194.ngrok-free.app/turn-off"
-    headers = {"Content-Type": "application/json"}
-
-    response = requests.post(url, headers=headers)
-
-    if response.status_code == 200:
-        print("Light turned on:", response.json())
-    else:
-        print("Error turning on light:", response.status_code)
+    light_control.light_control("off")
 
 if __name__ == "__main__":
     main()
